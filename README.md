@@ -14,7 +14,8 @@ A crawler is a program that starts with a url on the web (ex: http://python.org)
 
 > spider('url','maxPages')
 
-url -> initial URL
+url -> initial URL,
+
 maxPages -> no of page to crawel (pass only if want to limit)
 
 if no 'maxPages' is passing to spider(), it will continues crawling for all the links in the repository
