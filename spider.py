@@ -1,6 +1,7 @@
 from html.parser import HTMLParser
 from urllib.request import urlopen
 from urllib import parse
+import math
 
 
 class URLParser(HTMLParser):
@@ -20,7 +21,7 @@ class URLParser(HTMLParser):
         try:
             response = urlopen(url)
         except Exception as e:
-            print('URLException: ',e)
+            print('URLException: ', e)
             return []
 
         # Make sure that we are looking at HTML and not other things
@@ -31,7 +32,8 @@ class URLParser(HTMLParser):
             htmlBytes = response.read()
             htmlString = htmlBytes.decode("utf-8")
 
-            # Refer https://docs.python.org/2/library/htmlparser.html#HTMLParser.HTMLParser.feed
+            # Refer
+            # https://docs.python.org/2/library/htmlparser.html#HTMLParser.HTMLParser.feed
 
             self.feed(htmlString)
             return self.links
@@ -42,9 +44,12 @@ class URLParser(HTMLParser):
 # Spider to crawl the given URl, It takes in an URL and the number of
 # pages to search through.
 
-def spider(url, maxPages):
+def spider(url, maxPages=None):
     pagesToVisit = [url]
     numberVisited = 0
+
+    if maxPages is None:
+        maxPages = math.inf
 
     while numberVisited < maxPages and pagesToVisit != []:
         numberVisited = numberVisited + 1
