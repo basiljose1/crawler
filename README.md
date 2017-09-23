@@ -10,8 +10,9 @@ A crawler is a program that starts with a url on the web (ex: http://python.org)
 3. python3
 4. In python shell , 
 
->>> from spider import spider
->>> spider('url','maxPages')
+> from spider import spider
+
+> spider('url','maxPages')
 
 url -> initial URL
 maxPages -> no of page to crawel (pass only if want to limit)
